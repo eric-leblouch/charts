@@ -70,8 +70,8 @@ spec:
             chmod 600 /opt/bitnami/rabbitmq/.rabbitmq/.erlang.cookie /opt/bitnami/rabbitmq/var/lib/rabbitmq/.erlang.cookie
             #copy the mounted configuration to both places
             cp  /opt/bitnami/rabbitmq/conf/* /opt/bitnami/rabbitmq/etc/rabbitmq
-            # Apply resources limits
-            ulimit -n "${RABBITMQ_ULIMIT_NOFILES}"
+            # Apply resources limits does not work in kubernetes 1.11.5 commenting
+            # ulimit -n "${RABBITMQ_ULIMIT_NOFILES}"
             #replace the default password that is generated
             sed -i "s/CHANGEME/$RABBITMQ_PASSWORD/g" /opt/bitnami/rabbitmq/etc/rabbitmq/rabbitmq.conf
             # Move logs to stdout
